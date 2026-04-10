@@ -181,15 +181,14 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => banner.classList.add('visible'), 1500);
     }
 
-    acceptBtn.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'accepted');
-        banner.classList.remove('visible');
-    });
+    function dismissBanner(choice) {
+        localStorage.setItem('cookieConsent', choice);
+        banner.style.transform = 'translateY(-100%)';
+        setTimeout(() => banner.remove(), 500);
+    }
 
-    declineBtn.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'declined');
-        banner.classList.remove('visible');
-    });
+    acceptBtn.addEventListener('click', () => dismissBanner('accepted'));
+    declineBtn.addEventListener('click', () => dismissBanner('declined'));
 })();
 
 // Add spin keyframe for loading animation
