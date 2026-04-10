@@ -318,6 +318,16 @@ h3 { font-size: 1.25rem; font-weight: 700; }
     overflow: hidden;
 }
 
+.hero-bg-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    filter: brightness(0.6);
+}
+
 .hero-bg-pattern {
     position: absolute;
     inset: 0;
@@ -632,18 +642,17 @@ h3 { font-size: 1.25rem; font-weight: 700; }
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at 30% 40%, rgba(197, 16, 21, 0.1), transparent 60%);
+    z-index: 1;
+    border-radius: var(--radius-xl);
 }
 
-.about-icon-large {
-    width: 180px;
-    height: 180px;
-    color: var(--red);
-    animation: slowSpin 30s linear infinite;
-}
-
-@keyframes slowSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+.about-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    position: absolute;
+    inset: 0;
 }
 
 .about-badge-card {
@@ -812,7 +821,6 @@ h3 { font-size: 1.25rem; font-weight: 700; }
     background: var(--dark-2);
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: var(--radius-lg);
-    padding: 36px 28px;
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
@@ -1233,6 +1241,124 @@ h3 { font-size: 1.25rem; font-weight: 700; }
     box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
 }
 
+/* --- Parallax Section --- */
+.parallax-section {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.parallax-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(197, 16, 21, 0.3));
+}
+
+.parallax-content {
+    position: relative;
+    text-align: center;
+    padding: 80px 24px;
+}
+
+.parallax-content h2 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    margin-bottom: 16px;
+}
+
+.parallax-content p {
+    color: var(--gray-200);
+    font-size: 1.1rem;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* --- Area Card Images --- */
+.area-card {
+    overflow: hidden;
+    padding: 0;
+}
+
+.area-card-image {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.area-card-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 30%, var(--dark-2) 100%);
+}
+
+.area-card-content {
+    padding: 24px 28px 36px;
+}
+
+/* --- Gallery --- */
+.gallery {
+    padding: 120px 0;
+    background: var(--dark-2);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 260px;
+    gap: 16px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-item-large {
+    grid-row: span 2;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay span {
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+}
+
 /* --- Scroll Animations --- */
 [data-aos] {
     opacity: 0;
@@ -1348,6 +1474,19 @@ h3 { font-size: 1.25rem; font-weight: 700; }
 
     .areas-grid {
         grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 200px;
+    }
+
+    .gallery-item-large {
+        grid-row: span 1;
+    }
+
+    .parallax-section {
+        background-attachment: scroll;
     }
 
     .emergency-content {
