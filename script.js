@@ -167,6 +167,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+// --- Cookie consent banner ---
+(function() {
+    const banner = document.getElementById('cookieBanner');
+    const acceptBtn = document.getElementById('cookieAccept');
+    const declineBtn = document.getElementById('cookieDecline');
+
+    if (!banner) return;
+
+    // Check if user already made a choice
+    const consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+        setTimeout(() => banner.classList.add('visible'), 1500);
+    }
+
+    acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        banner.classList.remove('visible');
+    });
+
+    declineBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'declined');
+        banner.classList.remove('visible');
+    });
+})();
+
 // Add spin keyframe for loading animation
 const style = document.createElement('style');
 style.textContent = `@keyframes spin { to { transform: rotate(360deg); } }`;

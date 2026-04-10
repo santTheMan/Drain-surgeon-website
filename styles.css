@@ -1359,6 +1359,118 @@ h3 { font-size: 1.25rem; font-weight: 700; }
     letter-spacing: 0.02em;
 }
 
+/* --- Cookie Banner --- */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    background: var(--dark-2);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 20px 24px;
+    box-shadow: 0 -4px 32px rgba(0,0,0,0.4);
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cookie-banner.visible {
+    transform: translateY(0);
+}
+
+.cookie-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.cookie-text {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1;
+}
+
+.cookie-text svg {
+    flex-shrink: 0;
+    color: var(--red-light);
+    margin-top: 2px;
+}
+
+.cookie-text p {
+    color: var(--gray-300);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.cookie-link {
+    color: var(--red-light);
+    text-decoration: underline;
+}
+
+.cookie-link:hover {
+    color: var(--white);
+}
+
+.cookie-actions {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.btn-cookie {
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-family: var(--font-main);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all var(--transition);
+    white-space: nowrap;
+}
+
+.btn-cookie-accept {
+    background: var(--red);
+    color: var(--white);
+}
+
+.btn-cookie-accept:hover {
+    background: var(--red-light);
+    transform: translateY(-1px);
+}
+
+.btn-cookie-decline {
+    background: transparent;
+    color: var(--gray-300);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.btn-cookie-decline:hover {
+    border-color: var(--gray-300);
+    color: var(--white);
+}
+
+@media (max-width: 768px) {
+    .cookie-content {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .cookie-actions {
+        width: 100%;
+    }
+
+    .btn-cookie {
+        flex: 1;
+        text-align: center;
+    }
+}
+
 /* --- Scroll Animations --- */
 [data-aos] {
     opacity: 0;
